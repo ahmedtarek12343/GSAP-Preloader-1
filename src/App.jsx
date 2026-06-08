@@ -18,6 +18,9 @@ function App() {
       scaleY: 0,
       transformOrigin: "top",
     });
+    gsap.set(".menu-bar", {
+      xPercent: 100,
+    });
 
     let scrollY = window.scrollY;
     window.addEventListener("scroll", () => {
@@ -170,24 +173,41 @@ function App() {
         },
         "<0.2",
       )
-      .from(".main-p", {
-        autoAlpha: 0,
-      })
-      .from(".buybar", {
-        scale: 0,
-        autoAlpha: 0,
-      })
-      .from(".buybar button", {
-        autoAlpha: 0,
-      })
-      .from(".ball", {
-        autoAlpha: 0,
-        scale: 0,
-      });
+      .from(
+        ".main-p",
+        {
+          opacity: 0,
+          y: 20,
+        },
+        "<0.3",
+      )
+      .from(
+        ".buybar",
+        {
+          scale: 0,
+          opacity: 0,
+        },
+        "<0.2",
+      )
+      .from(
+        ".buybar button",
+        {
+          opacity: 0,
+        },
+        "<0.2",
+      )
+      .from(
+        ".ball",
+        {
+          opacity: 0,
+          scale: 0,
+        },
+        "<0.1",
+      );
   });
   return (
     <>
-      <div className="menu-bar fixed top-0 right-0 h-screen p-8 bg-white z-40 translate-x-full">
+      <div className="menu-bar w-[min(75vw,500px)] rounded-l-2xl fixed top-0 right-0 h-screen p-8 bg-white/40 backdrop-blur-2xl z-40">
         <div className="flex flex-col gap-5 items-center">
           <span className="text-black text-3xl">Menu</span>
           <ul className="flex gap-5">
@@ -225,7 +245,7 @@ function App() {
         <div className="countdown py-5 whitespace-nowrap text-[12rem] overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           95
         </div>
-        <div className="countdown py-5 whitespace-nowrap text-[12rem] overflow-hidden absolute top-1/2 left-[53%] -translate-x-1/2 -translate-y-1/2">
+        <div className="countdown py-5 whitespace-nowrap text-[12rem] overflow-hidden absolute top-1/2 left-[64%] md:left-[53%] -translate-x-1/2 -translate-y-1/2">
           9
         </div>
         <div className="absolute flex gap-5 top-1/2 left-1/2 overflow-hidden -translate-x-[50%] -translate-y-1/2 text-4xl">
@@ -236,7 +256,7 @@ function App() {
         <div className="spinner w-15 h-15 absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full border-2 border-[#bbbbbb48] border-t-white border-x-white animate-spin"></div>
       </div>
 
-      <div className="main-content text-white relative h-screen overflow-hidden">
+      <div className="main-content text-white relative h-screen flex justify-center items-center overflow-hidden">
         <div className="absolute top-0 left-0 h-full w-full">
           <img
             src="public\fleur-kaan-w4Dj3MshHQ0-unsplash.jpg"
@@ -244,25 +264,25 @@ function App() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="absolute top-1/2 left-1/2 flex flex-col gap-5 items-center -translate-x-1/2 -translate-y-1/2">
+        <div className="flex flex-col items-center mx-5">
           <div className="overflow-hidden text-center">
-            <span className="root-1 inline-block text-8xl  font-serif italic">
+            <span className="root-1 inline-block  text-[clamp(3rem,6vw,6rem)]  font-serif italic">
               Rooted in care,
             </span>
           </div>
           <div className="overflow-hidden text-center">
-            <span className="pb-5 root-2 inline-block text-8xl  font-sans">
+            <span className="root-2 inline-block  text-[clamp(3rem,6vw,6rem)]">
               grown in kindness
             </span>
           </div>
-          <p className="text-center mt-5 main-p">
+          <p className="text-center mt-5 main-p max-w-4xl mx-auto font-semibold">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
             nesciunt. Delectus labore similique velit, nemo error itaque odit
             dolorum quidem in! Nesciunt voluptates amet cumque rerum, error
             repudiandae nostrum! Aut.
           </p>
         </div>
-        <div className="absolute buybar p-6 bottom-10 left-1/2 -translate-x-1/2 w-[60%] bg-white flex justify-center items-center rounded-3xl">
+        <div className="absolute buybar p-6 bottom-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] bg-white flex justify-center items-center rounded-3xl">
           <button className="text-xl font-semibold text-black">
             Explore More
           </button>
@@ -273,9 +293,9 @@ function App() {
         <div className="h-16 navbar fixed w-full top-0">
           <div className="h-full px-5 flex justify-between items-center">
             <div className="">
-              <h3>KindRoot</h3>
+              <h3 className="font-bold ">KindRoot</h3>
             </div>
-            <ul className="flex gap-5 items-center">
+            <ul className="hidden md:flex gap-5 items-center">
               <li>Services</li>
               <li>Testimonials</li>
               <li>Projects</li>
@@ -285,7 +305,7 @@ function App() {
               <button
                 onClick={contextSafe(() => {
                   gsap.to(".menu-bar", {
-                    xPercent: -100,
+                    xPercent: 0,
                     duration: 0.5,
                   });
                 })}
