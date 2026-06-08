@@ -259,7 +259,7 @@ function App() {
       <div className="main-content text-white relative h-screen flex justify-center items-center overflow-hidden">
         <div className="absolute top-0 left-0 h-full w-full">
           <img
-            src="public\fleur-kaan-w4Dj3MshHQ0-unsplash.jpg"
+            src="/fleur-kaan-w4Dj3MshHQ0-unsplash.jpg"
             alt=""
             className="w-full h-full object-cover"
           />
